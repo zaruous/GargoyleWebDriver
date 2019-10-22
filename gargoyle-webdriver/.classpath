@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="target/classes" path="src">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="lib/explorer/4.0.0-alpha/client-combined-4.0.0-alpha-2-sources.jar"/>
+	<classpathentry kind="lib" path="lib/explorer/4.0.0-alpha/client-combined-4.0.0-alpha-2.jar"/>
+	<classpathentry kind="lib" path="lib/explorer/4.0.0-alpha/libs/byte-buddy-1.9.12.jar"/>
+	<classpathentry kind="lib" path="lib/explorer/4.0.0-alpha/libs/commons-exec-1.3.jar"/>
+	<classpathentry kind="lib" path="lib/explorer/4.0.0-alpha/libs/failureaccess-1.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/explorer/4.0.0-alpha/libs/guava-27.1-jre.jar"/>
+	<classpathentry kind="lib" path="lib/explorer/4.0.0-alpha/libs/listenablefuture-1.0.jar"/>
+	<classpathentry kind="lib" path="lib/explorer/4.0.0-alpha/libs/okhttp-3.14.0.jar"/>
+	<classpathentry kind="lib" path="lib/explorer/4.0.0-alpha/libs/okio-1.17.3.jar"/>
+	<classpathentry kind="lib" path="lib/explorer/4.0.0-alpha/libs/opentracing-api-0.33.0.jar"/>
+	<classpathentry kind="lib" path="lib/explorer/4.0.0-alpha/libs/opentracing-noop-0.33.0.jar"/>
+	<classpathentry kind="lib" path="lib/explorer/4.0.0-alpha/libs/opentracing-tracerresolver-0.1.7.jar"/>
+	<classpathentry kind="lib" path="lib/explorer/4.0.0-alpha/libs/opentracing-util-0.33.0.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>
