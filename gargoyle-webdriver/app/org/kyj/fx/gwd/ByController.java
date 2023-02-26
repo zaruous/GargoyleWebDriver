@@ -28,8 +28,8 @@ public class ByController {
 
 	@FXML
 	public ChoiceBox<String> cbSelection;
-	@FXML
-	public ChoiceBox<WebElementValueType> cbFindValueType;
+//	@FXML
+//	public ChoiceBox<WebElementValueType> cbFindValueType;
 
 	@FXML
 	public TextField txtSectionValue, txtWebElementValue;
@@ -51,7 +51,7 @@ public class ByController {
 			cbSelection.getItems().add(mname);
 		}
 
-		cbFindValueType.getItems().add(WebElementValueType.Attibute);
+//		cbFindValueType.getItems().add(WebElementValueType.Attibute);
 	}
 
 	@FXML

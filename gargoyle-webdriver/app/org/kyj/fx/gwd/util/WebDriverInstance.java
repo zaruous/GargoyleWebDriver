@@ -15,6 +15,7 @@ import java.util.Properties;
 import java.util.Set;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
@@ -79,8 +80,8 @@ public class WebDriverInstance {
 	protected WebDriver createDriver(DriverType type) throws FileNotFoundException {
 		WebDriver driver;
 
-		getConfig().getProperty("driver.path", "");
-		File driverFile = new File("lib/chrome/110", "chromedriver.exe");
+		String chromeDriverPath = getConfig().getProperty("driver.path", "lib/chrome/110/chromedriver.exe");
+		File driverFile = new File(chromeDriverPath);
 		if (!driverFile.exists()) {
 			System.err.println("chromedriver.exe does not eixsts.");
 			throw new FileNotFoundException("Driver not found. " + driverFile);
@@ -89,8 +90,7 @@ public class WebDriverInstance {
 		System.setProperty("webdriver.chrome.driver", driverFile.getAbsolutePath());
 
 		ChromeOptions options = new ChromeOptions();
-		// options.addArguments("headless");
-		// options.addArguments("--headless");
+//		 options.addArguments("--headless");
 
 		driver = new ChromeDriver(options);
 
@@ -115,12 +115,18 @@ public class WebDriverInstance {
 
 	/**
 	 * @작성자 : (zaruous@naver.com)
-	 * @작성일 : 2023. 2. 26. 
+	 * @작성일 : 2023. 2. 26.
 	 */
 	public static void changeLastTabHandle() {
-		WebDriver driver = getInstance().getDriver();
-		Set<String> windowHandles = driver.getWindowHandles();
-		ArrayList<String> tabs = new ArrayList<String>(windowHandles);
-		driver.switchTo().window(tabs.get(tabs.size() - 1));
+		try {
+			WebDriver driver = getInstance().getDriver();
+			Set<String> windowHandles = driver.getWindowHandles();
+			ArrayList<String> tabs = new ArrayList<String>(windowHandles);
+			driver.switchTo().window(tabs.get(tabs.size() - 1));
+		} catch (WebDriverException wde) {
+			wde.printStackTrace();
+			FxUtil.showMessageDialog(null, null, null, "Chrome이 종료되었습니다. 프로그램을 재시작해주세요", null);
+		}
+
 	}
 }
