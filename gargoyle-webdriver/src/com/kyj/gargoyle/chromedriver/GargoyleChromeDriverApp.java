@@ -2,7 +2,7 @@
  *	프로젝트 : gargoyle-chromedriver
  *	패키지   : com.kyj.gargoyle.chromedriver
  *	작성일   : 2019. 9. 28.
- *	작성자   : KYJ (callakrsos@naver.com)
+ *	작성자   : KYJ (zaruous@naver.com)
  *******************************/
 package com.kyj.gargoyle.chromedriver;
 
@@ -21,9 +21,10 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.function.Consumer;
 
-import org.openqa.selenium.ImmutableCapabilities;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -34,14 +35,17 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-
 /**
  * 
- * explorer driver : https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver <br/>
- * ie11  iedriver download site : https://selenium-release.storage.googleapis.com/index.html <br/>
+ * explorer driver :
+ * https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver <br/>
+ * ie11 iedriver download site :
+ * https://selenium-release.storage.googleapis.com/index.html <br/>
  * 
- * HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main 에 새 키 데이터를 추가하고 TabProcGrowth 값은 0을 넣어주어야함.  
- * @author KYJ (callakrsos@naver.com)
+ * HKEY_CURRENT_USER\Software\Microsoft\Internet Explorer\Main 에 새 키 데이터를 추가하고
+ * TabProcGrowth 값은 0을 넣어주어야함.
+ * 
+ * @author KYJ (zaruous@naver.com)
  *
  */
 public class GargoyleChromeDriverApp {
@@ -82,15 +86,15 @@ public class GargoyleChromeDriverApp {
 	}
 
 	/**
-	 * @작성자 : KYJ (callakrsos@naver.com)
+	 * @작성자 : KYJ (zaruous@naver.com)
 	 * @작성일 : 2019. 9. 28.
 	 * @param args
 	 * @throws InterruptedException
-	 * @throws FileNotFoundException 
+	 * @throws FileNotFoundException
 	 */
 	public static void main(String[] args) throws InterruptedException, FileNotFoundException {
 
-		GargoyleChromeDriverApp gargoyleChromeDriverApp = new GargoyleChromeDriverApp(DriverType.Exporer);
+		GargoyleChromeDriverApp gargoyleChromeDriverApp = new GargoyleChromeDriverApp(DriverType.Chrome);
 
 		System.out.println("##print arguments");
 
@@ -109,18 +113,18 @@ public class GargoyleChromeDriverApp {
 	private List<WebDriver> management = new ArrayList<>();
 
 	/**
-	 * @작성자 : KYJ (callakrsos@naver.com)
-	 * @작성일 : 2019. 10. 22. 
+	 * @작성자 : KYJ (zaruous@naver.com)
+	 * @작성일 : 2019. 10. 22.
 	 * @throws InterruptedException
 	 * @throws FileNotFoundException
 	 */
 	private void execute() throws InterruptedException, FileNotFoundException {
 		execute(this.driverType);
 	}
-	
+
 	/**
-	 * @작성자 : KYJ (callakrsos@naver.com)
-	 * @작성일 : 2019. 10. 22. 
+	 * @작성자 : KYJ (zaruous@naver.com)
+	 * @작성일 : 2019. 10. 22.
 	 * @param type
 	 * @throws InterruptedException
 	 * @throws FileNotFoundException
@@ -163,6 +167,16 @@ public class GargoyleChromeDriverApp {
 							driver.quit();
 							newFixedThreadPool.shutdown();
 							return;
+						} else if ("images".equals(temp)) {
+
+							List<WebElement> findElements = rootDriver.findElements(By.tagName("img"));
+							findElements.forEach(new Consumer<WebElement>() {
+								@Override
+								public void accept(WebElement ele) {
+									String imgUrl = ele.getAttribute("src");
+									System.out.println(imgUrl);
+								}
+							});
 						}
 						/* 프로세스에 저장된 url을 기반으로 동영상 목록을 추출하는 프로세스 시작. */
 						else if ("process".contentEquals(temp)) {
@@ -172,26 +186,23 @@ public class GargoyleChromeDriverApp {
 							gargoyleChromeDriverApp.execute(type);
 							scan.close();
 							break;
-						}
-						else if(temp.startsWith("url "))
-						{
+						} else if (temp.startsWith("url ")) {
 							try {
 								String[] split = temp.split(" ");
 								String visiteUrl = split[1];
-								rootDriver.get(visiteUrl);	
+								rootDriver.get(visiteUrl);
 								System.out.println("visite url : " + visiteUrl);
-							}catch(Exception e)
-							{
+
+							} catch (Exception e) {
 								e.printStackTrace();
 								// ignore.
 							}
 						}
-						
-						else if("pageSource".contentEquals(temp))
-						{
+
+						else if ("pageSource".contentEquals(temp)) {
 							System.out.println(rootDriver.getPageSource());
 						}
-						
+
 						/* 파일 다운로드 */
 						else if ("downloadall".contentEquals(temp)) {
 							json.entrySet().parallelStream().forEach(entry -> {
@@ -210,7 +221,7 @@ public class GargoyleChromeDriverApp {
 							System.out.println(url);
 							System.out.println(gson.toJson(json));
 						}
-						
+
 						/* 저장된 url 정보를 로드 */
 						else if ("loadconfig".contentEquals(temp)) {
 							try {
@@ -285,7 +296,7 @@ public class GargoyleChromeDriverApp {
 	});
 
 	/**
-	 * @작성자 : KYJ (callakrsos@naver.com)
+	 * @작성자 : KYJ (zaruous@naver.com)
 	 * @작성일 : 2019. 9. 28.
 	 * @param key
 	 * @param url
@@ -317,7 +328,7 @@ public class GargoyleChromeDriverApp {
 	}
 
 	/**
-	 * @작성자 : KYJ (callakrsos@naver.com)
+	 * @작성자 : KYJ (zaruous@naver.com)
 	 * @작성일 : 2019. 9. 28.
 	 * @return
 	 * @throws FileNotFoundException
@@ -327,7 +338,7 @@ public class GargoyleChromeDriverApp {
 		switch (type) {
 		case Chrome:
 			// new GargoyleSSLVertifier().setup();
-			File driverFile = new File("lib/chrome/_77", "chromedriver.exe");
+			File driverFile = new File("lib/chrome/110", "chromedriver.exe");
 			if (!driverFile.exists()) {
 				System.err.println("chromedriver.exe does not eixsts.");
 				throw new FileNotFoundException("Driver not found. " + driverFile);
@@ -336,44 +347,40 @@ public class GargoyleChromeDriverApp {
 			System.setProperty("webdriver.chrome.driver", driverFile.getAbsolutePath());
 
 			ChromeOptions options = new ChromeOptions();
-			options.addArguments("headless");
-			options.addArguments("--headless");
+			// options.addArguments("headless");
+			// options.addArguments("--headless");
 
 			driver = new ChromeDriver(options);
 			management.add(driver);
 			break;
 		case Exporer:
-			driverFile = new File("C:\\Users\\calla\\git\\GargoyleWebDriver\\gargoyle-webdriver\\lib\\explorer\\3.9\\x32\\IEDriverServer.exe");
+			driverFile = new File(
+					"C:\\Users\\calla\\git\\GargoyleWebDriver\\gargoyle-webdriver\\lib\\explorer\\3.9\\x32\\IEDriverServer.exe");
 			if (!driverFile.exists()) {
 				System.err.println("chromedriver.exe does not eixsts.");
 				throw new FileNotFoundException("Driver not found. " + driverFile);
 			}
 			System.setProperty("webdriver.ie.driver", driverFile.getAbsolutePath());
-			
-//			InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
-//		    true
-			
-			
-			
-			HashMap<String, Object> capabilities = new HashMap<String,Object>();
-			capabilities.put( InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
-				    true);
-//			capabilities.put( InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION,
-//				    true);
-//			capabilities.put( InternetExplorerDriver.FORCE_CREATE_PROCESS,
-//				    true);
-//			capabilities.put( InternetExplorerDriver.IGNORE_ZOOM_SETTING,
-//				    true);
-			
-			
-			ImmutableCapabilities c = new ImmutableCapabilities(capabilities);
-			
-			
-			InternetExplorerDriver iedriver = new InternetExplorerDriver(c);
+
+			// InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
+			// true
+
+			HashMap<String, Object> capabilities = new HashMap<String, Object>();
+			capabilities.put(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
+			// capabilities.put( InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION,
+			// true);
+			// capabilities.put( InternetExplorerDriver.FORCE_CREATE_PROCESS,
+			// true);
+			// capabilities.put( InternetExplorerDriver.IGNORE_ZOOM_SETTING,
+			// true);
+
+			// ImmutableCapabilities c = new
+			// ImmutableCapabilities(capabilities);
+
+			InternetExplorerDriver iedriver = new InternetExplorerDriver();
+
 			driver = iedriver;
 			driver.get("https://www.google.com");
-			
-			
 
 			management.add(driver);
 			break;
@@ -385,7 +392,7 @@ public class GargoyleChromeDriverApp {
 	}
 
 	/**
-	 * @작성자 : KYJ (callakrsos@naver.com)
+	 * @작성자 : KYJ (zaruous@naver.com)
 	 * @작성일 : 2019. 9. 28.
 	 * @param driver
 	 */
@@ -396,7 +403,7 @@ public class GargoyleChromeDriverApp {
 	}
 
 	/**
-	 * @작성자 : KYJ (callakrsos@naver.com)
+	 * @작성자 : KYJ (zaruous@naver.com)
 	 * @작성일 : 2019. 9. 28.
 	 * @param driver
 	 * @return
@@ -410,7 +417,7 @@ public class GargoyleChromeDriverApp {
 	}
 
 	/**
-	 * @작성자 : KYJ (callakrsos@naver.com)
+	 * @작성자 : KYJ (zaruous@naver.com)
 	 * @작성일 : 2019. 9. 28.
 	 * @param driver
 	 * @param script

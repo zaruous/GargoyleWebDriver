@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.kyj.fx.gwd.WebdriverHelperController">
+   <top>
+      <HBox alignment="CENTER" spacing="5.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="URL" />
+            <TextField fx:id="txtUrl" onKeyReleased="#txtUrlOnKeyReleased" HBox.hgrow="ALWAYS" />
+            <Button mnemonicParsing="false" onAction="#btnUrlEnterOnAction" prefWidth="80.0" text="접속" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+   </top>
+   <center>
+      <SplitPane dividerPositions="0.76775956284153" orientation="VERTICAL" BorderPane.alignment="CENTER">
+         <items>
+            <SplitPane dividerPositions="0.3795986622073579">
+               <items>
+                  <FlowPane hgap="5.0" prefHeight="200.0" prefWidth="200.0" vgap="5.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#btnImageDownloadOnAction" text="Load Images" />
+                        <Button mnemonicParsing="false" onAction="#btnPageSourceOnAction" text="Page Source" />
+                        <Button mnemonicParsing="false" onAction="#byOnAction" prefWidth="80.0" text="By" />
+                        <Button mnemonicParsing="false" onAction="#btnBookTokiComicDownloadScriptOnAction" prefHeight="22.0" prefWidth="169.0" text="북토끼 만화 다운 스크립트" />
+                     </children>
+                  </FlowPane>
+                  <TabPane>
+                     <tabs>
+                        <Tab text="Image">
+                           <content>
+                              <BorderPane>
+                                 <center>
+                                    <TableView fx:id="tvImage" editable="true" prefHeight="200.0" prefWidth="200.0">
+                                      <columns>
+                                        <TableColumn fx:id="tcCheck" prefWidth="75.0" text="Check" />
+                                        <TableColumn fx:id="tcImage" prefWidth="216.0" text="Image" />
+                                          <TableColumn fx:id="tcUrl" prefWidth="71.0" text="URL" />
+                                      </columns>
+                                    </TableView>
+                                 </center>
+                                 <bottom>
+                                    <HBox BorderPane.alignment="CENTER">
+                                       <children>
+                                          <TextField fx:id="txtImgUrlForRegex" onKeyReleased="#txtImgUrlForRegexOnKeyReleased" promptText="정규식" HBox.hgrow="ALWAYS" />
+                                          <Button mnemonicParsing="false" onAction="#imgUrlFilterOnAction" text="Filter" />
+                                       </children>
+                                    </HBox>
+                                 </bottom>
+                              </BorderPane>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+               </items>
+            </SplitPane>
+            <TextArea fx:id="txtLog" prefHeight="200.0" prefWidth="200.0" />
+         </items>
+      </SplitPane>
+   </center>
+</BorderPane>

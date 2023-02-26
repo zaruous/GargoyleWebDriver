@@ -2,7 +2,7 @@
  *	프로젝트 : Ani24-Downloader
  *	패키지   : com.kyj.gargoyle.chromedriver.util
  *	작성일   : 2019. 9. 30.
- *	작성자   : KYJ (callakrsos@naver.com)
+ *	작성자   : KYJ (zaruous@naver.com)
  *******************************/
 package com.kyj.gargoyle.chromedriver.util;
 
@@ -12,7 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
 /**
- * @author KYJ (callakrsos@naver.com)
+ * @author KYJ (zaruous@naver.com)
  *
  */
 public class ChromeDriverDownload {

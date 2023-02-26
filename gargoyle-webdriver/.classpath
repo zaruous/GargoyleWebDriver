@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" output="target/classes" path="src">
+	<classpathentry kind="src" path="app"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-16">
 		<attributes>
-			<attribute name="optional" value="true"/>
-			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
-		<attributes>
+			<attribute name="module" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
@@ -29,5 +27,13 @@
 	<classpathentry kind="lib" path="lib/explorer/4.0.0-alpha/libs/opentracing-noop-0.33.0.jar"/>
 	<classpathentry kind="lib" path="lib/explorer/4.0.0-alpha/libs/opentracing-tracerresolver-0.1.7.jar"/>
 	<classpathentry kind="lib" path="lib/explorer/4.0.0-alpha/libs/opentracing-util-0.33.0.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JAVAFX"/>
+	<classpathentry including="src/**/*.*|app/**/*.*" kind="src" output="target/classes" path="Users/KYJ/git/GargoyleWebDriver/gargoyle-webdriver">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

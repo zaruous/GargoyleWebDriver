@@ -2,7 +2,7 @@
  *	프로젝트 : gargoyle-chromedriver
  *	패키지   : com.kyj.gargoyle.chromedriver.util
  *	작성일   : 2019. 9. 29.
- *	작성자   : KYJ (callakrsos@naver.com)
+ *	작성자   : KYJ (zaruous@naver.com)
  *******************************/
 package com.kyj.gargoyle.chromedriver.util;
 
@@ -25,7 +25,7 @@ import javax.net.ssl.X509TrustManager;
 /**
  * 
  * 아래 코드로 다운로드 작동 안됨.
- * @author KYJ (callakrsos@naver.com)
+ * @author KYJ (zaruous@naver.com)
  *
  */
 @Deprecated
@@ -75,7 +75,7 @@ public class DownloadFile implements Runnable {
 	}
 
 	/**
-	 * @작성자 : KYJ (callakrsos@naver.com)
+	 * @작성자 : KYJ (zaruous@naver.com)
 	 * @작성일 : 2019. 9. 29.
 	 * @throws Exception
 	 */

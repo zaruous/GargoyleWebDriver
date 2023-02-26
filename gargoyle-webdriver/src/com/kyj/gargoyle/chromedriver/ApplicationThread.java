@@ -2,7 +2,7 @@
  *	프로젝트 : gargoyle-chromedriver
  *	패키지   : com.kyj.gargoyle.chromedriver
  *	작성일   : 2019. 9. 28.
- *	작성자   : KYJ (callakrsos@naver.com)
+ *	작성자   : KYJ (zaruous@naver.com)
  *******************************/
 package com.kyj.gargoyle.chromedriver;
 
@@ -16,7 +16,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 /**
- * @author KYJ (callakrsos@naver.com)
+ * @author KYJ (zaruous@naver.com)
  *
  */
 public class ApplicationThread extends Thread {
